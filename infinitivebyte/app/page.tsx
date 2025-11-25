@@ -2,15 +2,17 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Agency } from "./api/data/route";
 
 export default function Home() {
 
-	const [data, setData] = useState<Object | null>(null);
+	const [Agencies, setAgencies] = useState<Agency[] | null>(null);
 
 	useEffect(()=>{
 		async function Get(){
-			const res = await axios.get("/api/data?target=agenciesf");
-			console.log(res?.data);
+			const res = await axios.get("/api/data?target=agencies");
+			console.log(res.data);
+			setAgencies(res.data?.Agencies);
 		}
 		Get();
 	}, [])
