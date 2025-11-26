@@ -4,6 +4,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Agency } from "./api/data/route";
 
+async function fetchAgencies() : Promise<Agency[] | null> {
+	
+	return null;
+}
+
 export default function Home() {
 
 	const [Agencies, setAgencies] = useState<Agency[] | null>(null);
