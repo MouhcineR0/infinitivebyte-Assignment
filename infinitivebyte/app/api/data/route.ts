@@ -4,12 +4,13 @@ import Papa from "papaparse"
 import { NextResponse } from "next/server";
 import { parseBundlerArgs } from "next/dist/lib/bundler";
 import Agency from "@/app/interfaces/Agency";
+import Contact from "@/app/interfaces/Contact";
 
 
-function ConvertSchema(Data: any): Array<Agency> | null {
+function ConvertSchemaAgency(Data: any): Array<Agency> | null {
 	if (!Data || !Data.length)
 		return null;
-	var newObj = Data?.map((ele : string[]) => ({
+	var newObj = Data?.map((ele: string[]) => ({
 		name: ele[0],
 		state: ele[1],
 		state_code: ele[2],
@@ -36,6 +37,29 @@ function ConvertSchema(Data: any): Array<Agency> | null {
 	return newObj;
 }
 
+function ConvertSchemaContact(Data: any): Array<Contact> | null {
+	if (!Data || !Data.length) return null;
+
+	const newObj = Data.map((ele: string[]) => ({
+		id: ele[0],
+		first_name: ele[1],
+		last_name: ele[2],
+		email: ele[3],
+		phone: ele[4],
+		title: ele[5],
+		email_type: ele[6],
+		contact_form_url: ele[7],
+		created_at: ele[8],
+		updated_at: ele[9],
+		agency_id: ele[10],
+		firm_id: ele[11],
+		department: ele[12],
+	}));
+
+	return newObj;
+}
+
+
 export function GET(request: Request) {
 	try {
 		const req = new URL(request.url);
@@ -52,12 +76,12 @@ export function GET(request: Request) {
 		const file = fs.readFileSync(filePath, "utf-8");
 		const ParseContent = Papa.parse(file);
 		console.log(typeof ParseContent?.data);
-		const DataConverted: Agency[] | null = ConvertSchema(ParseContent?.data);
-		if (!DataConverted)
-			NextResponse.json({ message: "Error" }, { status: 401 });
+		// const DataConverted: Agency[] | null = ConvertSchemaAgency(ParseContent?.data);
+		// if (!DataConverted)
+		// 	NextResponse.json({ message: "Error" }, { status: 401 });
 		if (target == "agencies")
-			return NextResponse.json({ Agencies: { ...DataConverted } });
-		return NextResponse.json({ Contacts: { ...DataConverted } });
+			return NextResponse.json({ Agencies: { ...ConvertSchemaAgency(ParseContent?.data) } });
+		return NextResponse.json({ Contacts: { ...ConvertSchemaContact(ParseContent?.data) } });
 	}
 
 	catch (err) {

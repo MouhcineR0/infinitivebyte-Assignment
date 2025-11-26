@@ -9,6 +9,11 @@ import {
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import Login from "./Pages/Login"
+import { Inter, Poppins } from 'next/font/google';
+
+
+
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,6 +24,16 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 })
+const inter = Inter({ 
+	subsets: ['latin'],
+	variable: '--font-inter'
+});
+const poppins = Poppins({ 
+	variable: '--font-poppins',
+	subsets: ['latin'],
+	weight : ['600']
+});
+
 
 export const metadata: Metadata = {
   title: 'Clerk Next.js Quickstart',
@@ -33,20 +48,25 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
+        <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} antialiased bg-white`}>
+		<SignedOut>
+			<Login />
+			{/* <h1>rachid</h1>
+			<SignInButton>
+				<button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+				Sign In
+				</button>
+			</SignInButton>
+			<SignUpButton>
+				<button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+				Sign Up
+				</button>
+			</SignUpButton> */}
+			
+		</SignedOut>
+		<SignedIn>
+			<UserButton />
+		</SignedIn>
           {children}
         </body>
       </html>

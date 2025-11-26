@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#4A90E2",
+              "background-light": "#F4F7FA",
+              "background-dark": "#101922",
+              "text-light": "#333333",
+              "text-dark": "#E0E0E0",
+              "card-light": "#ffffff",
+              "card-dark": "#192734",
+              "border-light": "#E0E0E0",
+              "border-dark": "#334155",
+              "accent": "#50E3C2"
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex w-64 flex-col bg-card-light dark:bg-card-dark p-4 border-r border-border-light dark:border-border-dark">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 px-2 py-4">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h1 class="text-text-light dark:text-text-dark text-xl font-bold">Dashboard</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined fill">home</span>
+<p class="text-sm font-medium leading-normal">Home</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">corporate_fare</span>
+<p class="text-sm font-medium leading-normal">Agencies</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Contacts</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Logout</p>
+</a>
+<div class="border-t border-border-light dark:border-border-dark my-2"></div>
+<div class="flex items-center gap-3 p-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar of Jordan" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD80hHtqfksPfDqsK1lsxA0yyY-nq2I_TvwKw14oK6CGdocWK6ISyC0mh5fnLYwjg66evzLtFq3zjp68hyxPFcN5xaNuu8bZDx7_HG-GanzK4NaJW0UgKta5BTsyUbL6bIZi6myqlh14EksezroKMFmq5O9y3P7xclH5qgCcBjUPkki4cmioKCkb1QQpNY0lDmUjwCJqlagiRBapDcT6y3x-qnsseggyrFF_NN4h71gLV-bOr3pD3MTg8oSJYmewm6pA0op2m7FkAU");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Jordan Smith</h1>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-normal leading-normal">Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex flex-1 flex-col">
+<!-- TopNavBar -->
+<header class="flex h-16 items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-10 py-3 bg-card-light dark:bg-card-dark sticky top-0 z-10">
+<label class="flex flex-col min-w-40 !h-10 w-full max-w-lg">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-gray-500 dark:text-gray-400 flex bg-background-light dark:bg-background-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 border-none bg-background-light dark:bg-background-dark h-full placeholder:text-gray-500 dark:placeholder:text-gray-400 pl-2 text-base font-normal leading-normal" placeholder="Search agencies, contacts..." value=""/>
+</div>
+</label>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar of Jordan" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPJM-_kUQabN863E3M25dmsgTkwkFKIfuY-zKZgIzVba3ptPzCnHsrNm9FNi6lvZt5sX1Gsi7ox3pPyd9n2abiJMRAqudWmOj944NJZ1iQyYVB_l6mPs9iZR0kHsV3uQ1TrJfw8l4t78W0eoJzmngePUjvDKZSZpAhNK5WSCt4HDJTlmbQ6i7_OvlPZMrNh8xPSdbhNpLf6Y2vrGLdshyJzmS8ZWNT5SugvN-fnU07uHaMupKdHBq6PzCaL9zcLx7p8nEmMVzTnq8");'></div>
+</div>
+</header>
+<!-- Page Content Area -->
+<main class="flex-1 p-8 overflow-y-auto">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<div class="flex min-w-72 flex-col gap-1">
+<p class="text-text-light dark:text-text-dark text-3xl font-bold leading-tight tracking-tight">Welcome back, Jordan!</p>
+<p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal">Here's a quick overview of your account.</p>
+</div>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Total Agencies</p>
+<p class="text-text-light dark:text-text-dark tracking-light text-4xl font-bold leading-tight">1,204</p>
+<p class="text-accent text-sm font-medium leading-normal">+5.4% this month</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Total Contacts</p>
+<p class="text-text-light dark:text-text-dark tracking-light text-4xl font-bold leading-tight">15,842</p>
+<p class="text-accent text-sm font-medium leading-normal">+2.1% this month</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">New this week</p>
+<p class="text-text-light dark:text-text-dark tracking-light text-4xl font-bold leading-tight">78</p>
+<p class="text-accent text-sm font-medium leading-normal">+12% from last week</p>
+</div>
+</div>
+<!-- SectionHeader for Quick Access -->
+<h2 class="text-text-light dark:text-text-dark text-xl font-bold leading-tight tracking-tight mb-4">Quick Access</h2>
+<!-- Quick Access Panels -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div class="flex flex-col gap-4 rounded-xl p-6 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined" style="font-size: 32px;">corporate_fare</span>
+</div>
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold">Manage Agencies</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400">View, edit, or add new partner agencies to the system.</p>
+<button class="mt-auto flex w-fit cursor-pointer items-center justify-center rounded-lg h-10 bg-primary text-white gap-2 text-sm font-bold px-4 hover:bg-primary/90 transition-colors">View All Agencies</button>
+</div>
+<div class="flex flex-col gap-4 rounded-xl p-6 bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined" style="font-size: 32px;">group</span>
+</div>
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold">Browse Contacts</h3>
+</div>
+<p class="text-gray-500 dark:text-gray-400">Search and manage your list of professional contacts.</p>
+<button class="mt-auto flex w-fit cursor-pointer items-center justify-center rounded-lg h-10 bg-primary text-white gap-2 text-sm font-bold px-4 hover:bg-primary/90 transition-colors">Add New Contact</button>
+</div>
+</div>
+<!-- SectionHeader for Recent Activity -->
+<h2 class="text-text-light dark:text-text-dark text-xl font-bold leading-tight tracking-tight mb-4">Recent Activity</h2>
+<!-- Activity Feed -->
+<div class="rounded-xl bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark">
+<ul class="divide-y divide-border-light dark:divide-border-dark">
+<li class="p-4 flex items-center justify-between hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-accent/20 text-accent">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<p class="text-sm">You added a new contact: <span class="font-semibold text-text-light dark:text-text-dark">Maria Garcia</span></p>
+</div>
+<p class="text-xs text-gray-400">2 min ago</p>
+</li>
+<li class="p-4 flex items-center justify-between hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">domain</span>
+</div>
+<p class="text-sm">Agency <span class="font-semibold text-text-light dark:text-text-dark">Innovate Inc.</span> was updated.</p>
+</div>
+<p class="text-xs text-gray-400">1 hour ago</p>
+</li>
+<li class="p-4 flex items-center justify-between hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-accent/20 text-accent">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<p class="text-sm">You added a new contact: <span class="font-semibold text-text-light dark:text-text-dark">John Doe</span></p>
+</div>
+<p class="text-xs text-gray-400">3 hours ago</p>
+</li>
+<li class="p-4 flex items-center justify-between hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">domain</span>
+</div>
+<p class="text-sm">Agency <span class="font-semibold text-text-light dark:text-text-dark">Tech Solutions</span> was updated.</p>
+</div>
+<p class="text-xs text-gray-400">Yesterday</p>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+</body></html>
