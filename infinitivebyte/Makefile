@@ -13,3 +13,6 @@ stop :
 
 rm:
 	@docker rm $$(docker ps -qa)
+
+cache:
+	@docker builder prune -f
