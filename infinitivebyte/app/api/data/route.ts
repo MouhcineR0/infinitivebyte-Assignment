@@ -3,36 +3,13 @@ import fs from "fs"
 import Papa from "papaparse"
 import { NextResponse } from "next/server";
 import { parseBundlerArgs } from "next/dist/lib/bundler";
+import Agency from "@/app/interfaces/Agency";
 
-export interface Agency {
-	name: string;
-	state: string;
-	state_code: string;
-	type: string;
-	population: string;
-	website: string;
-	total_schools: string;
-	total_students: string;
-	mailing_address: string;
-	grade_span: string;
-	locale: string;
-	csa_cbsa: string;
-	domain_name: string;
-	physical_address: string;
-	phone: string;
-	status: string;
-	student_teacher_ratio: string;
-	supervisory_union: string;
-	county: string;
-	created_at: string;
-	updated_at: string;
-	id: string;
-}
 
 function ConvertSchema(Data: any): Array<Agency> | null {
 	if (!Data || !Data.length)
 		return null;
-	var newObj = Data?.map(ele => ({
+	var newObj = Data?.map((ele : string[]) => ({
 		name: ele[0],
 		state: ele[1],
 		state_code: ele[2],
@@ -56,7 +33,6 @@ function ConvertSchema(Data: any): Array<Agency> | null {
 		updated_at: ele[20],
 		id: ele[21],
 	}))
-	console.log(newObj);
 	return newObj;
 }
 
