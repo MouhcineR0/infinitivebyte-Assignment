@@ -9,7 +9,7 @@ import {
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import Login from "./Pages/Login"
+import Login from "./home/page"
 import { Inter, Poppins } from 'next/font/google';
 
 
@@ -24,14 +24,14 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 })
-const inter = Inter({ 
-	subsets: ['latin'],
-	variable: '--font-inter'
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter'
 });
-const poppins = Poppins({ 
-	variable: '--font-poppins',
-	subsets: ['latin'],
-	weight : ['600']
+const poppins = Poppins({
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['600']
 });
 
 
@@ -49,24 +49,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} antialiased bg-white`}>
-		<SignedOut>
-			<Login />
-			{/* <h1>rachid</h1>
-			<SignInButton>
-				<button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-				Sign In
-				</button>
-			</SignInButton>
-			<SignUpButton>
-				<button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-				Sign Up
-				</button>
-			</SignUpButton> */}
-			
-		</SignedOut>
-		<SignedIn>
-			<UserButton />
-		</SignedIn>
+          {/* <SignedOut> */}
+          {/* <Login /> */}
+          {/* </SignedOut> */}
           {children}
         </body>
       </html>
