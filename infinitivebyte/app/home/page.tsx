@@ -26,19 +26,36 @@ function index() {
 					/>
 				</div>
 				<div className="w-full flex flex-col items-center z-99">
-					<nav className="text-white mt-6 flex justify-between w-[50%] bg-[#ffffff22] py-5 px-7 rounded-full border-[#ffffff2c] border">
-						<div className="flex gap-1  items-center font-[Poppins] font-semibold">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-6">
-								<path fillRule="evenodd" d="M12.577 4.878a.75.75 0 0 1 .919-.53l4.78 1.281a.75.75 0 0 1 .531.919l-1.281 4.78a.75.75 0 0 1-1.449-.387l.81-3.022a19.407 19.407 0 0 0-5.594 5.203.75.75 0 0 1-1.139.093L7 10.06l-4.72 4.72a.75.75 0 0 1-1.06-1.061l5.25-5.25a.75.75 0 0 1 1.06 0l3.074 3.073a20.923 20.923 0 0 1 5.545-4.931l-3.042-.815a.75.75 0 0 1-.53-.919Z" clipRule="evenodd" />
-							</svg>
-							Agency
+					<nav className="text-white mt-8 w-full max-w-5xl mx-auto px-4 py-3 rounded-full bg-white/5 backdrop-blur-lg border border-white/10 flex items-center justify-between">
+						{/* Logo and site name */}
+						<div className="flex items-center gap-3">
+							<div className="h-9 w-9 bg-linear-to-br from-indigo-600 to-emerald-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+								IB
+							</div>
+							<div className="hidden sm:block font-poppins font-semibold leading-tight">
+								<div>InfinitiveByte</div>
+								<div className="text-xs text-white/60">Agency</div>
+							</div>
 						</div>
-						<div className="right-container flex items-center gap-3 font-inter">
-							<Link href={'/dashboard'}>Home</Link>
-							<a href={'https://github.com'} target="_blank">Docs</a>
+
+						{/* Navigation Links */}
+						<div className="hidden sm:flex items-center gap-2 text-sm">
+							<Link href={'/dashboard'} className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Home</Link>
+							<a href={'https://github.com/rachid-mouhcine'} target="_blank" className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Docs</a>
+							<a href={'#features'} className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Features</a>
+						</div>
+
+						{/* Auth Buttons */}
+						<div className="flex items-center gap-3 text-sm">
+							<SignInButton mode="modal">
+								<button className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Sign in</button>
+							</SignInButton>
+							<SignUpButton mode="modal">
+								<button className="px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-500 transition-colors shadow-lg">Sign up</button>
+							</SignUpButton>
 						</div>
 					</nav>
-					<div className="middle mt-20 flex items-center justify-center text-white gap-8 relative">
+					<div className="middle mt-24 flex items-center justify-center text-white gap-8 relative">
 						{/* decorative blob behind hero (subtle) */}
 						<div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-56 h-56 rounded-full bg-linear-to-br from-emerald-600/12 to-indigo-600/8 blur-3xl pointer-events-none hidden lg:block" />
 
