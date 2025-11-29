@@ -1,8 +1,5 @@
-import path from "path"
-import fs from "fs"
 import Papa from "papaparse"
 import { NextResponse } from "next/server";
-import { parseBundlerArgs } from "next/dist/lib/bundler";
 import Agency from "@/app/interfaces/Agency";
 import Contact from "@/app/interfaces/Contact";
 
@@ -60,30 +57,36 @@ function ConvertSchemaContact(Data: any): Array<Contact> | null {
 }
 
 
-export function GET(request: Request) {
+export async function GET(request: Request) {
 	try {
 		const req = new URL(request.url);
 		const target = req.searchParams.get("target") ?? "default";
+		
 		if (target == "default")
-			return NextResponse.json({ message: "" }, { status: 400 });
-		var filePath: string = "default";
-		if (target == "agencies")
-			filePath = path.join(process.cwd(), "MockData/agencies_agency_rows.csv");
-		else if (target == "contacts")
-			filePath = path.join(process.cwd(), "MockData/contacts_contact_rows.csv");
-		else
-			NextResponse.json({ message: "Error" }, { status: 401 });
-		const file = fs.readFileSync(filePath, "utf-8");
-		const ParseContent = Papa.parse(file);
-		console.log(typeof ParseContent?.data);
-		// const DataConverted: Agency[] | null = ConvertSchemaAgency(ParseContent?.data);
-		// if (!DataConverted)
-		// 	NextResponse.json({ message: "Error" }, { status: 401 });
-		if (target == "agencies")
-			return NextResponse.json({ Agencies: { ...ConvertSchemaAgency(ParseContent?.data) } });
-		return NextResponse.json({ Contacts: { ...ConvertSchemaContact(ParseContent?.data) } });
-	}
+			return NextResponse.json({ message: "No target specified" }, { status: 400 });
 
+		let fileUrl: string;
+		const baseUrl = request.url.split('/api')[0];
+		if (target == "agencies")
+			fileUrl = `${baseUrl}/agencies_agency_rows.csv`;
+		else if (target == "contacts")
+			fileUrl = `${baseUrl}/contacts_contact_rows.csv`;
+		else
+			return NextResponse.json({ message: "Invalid target" }, { status: 400 });
+
+		const response = await fetch(fileUrl);
+		
+		if (!response.ok) {
+			return NextResponse.json({ message: "File not found" }, { status: 404 });
+		}
+
+		const fileContent = await response.text();
+		const ParseContent = Papa.parse(fileContent);
+
+		if (target == "agencies")
+			return NextResponse.json({ Agencies: ConvertSchemaAgency(ParseContent?.data) });
+		return NextResponse.json({ Contacts: ConvertSchemaContact(ParseContent?.data) });
+	}
 	catch (err) {
 		console.log("Error => ", err);
 		return NextResponse.json({ message: "Error" }, { status: 500 });
