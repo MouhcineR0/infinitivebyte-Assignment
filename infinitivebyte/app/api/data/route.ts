@@ -61,6 +61,10 @@ export async function GET(request: Request) {
 	try {
 		const req = new URL(request.url);
 		const target = req.searchParams.get("target") ?? "default";
+		const pageParam = req.searchParams.get("page") || '1';
+		const pageSizeParam = req.searchParams.get("pageSize") || '20';
+		const page = Math.max(1, parseInt(pageParam));
+		const pageSize = Math.max(1, parseInt(pageSizeParam));
 		
 		if (target == "default")
 			return NextResponse.json({ message: "No target specified" }, { status: 400 });
@@ -82,10 +86,26 @@ export async function GET(request: Request) {
 
 		const fileContent = await response.text();
 		const ParseContent = Papa.parse(fileContent);
+		const rows: any[] = ParseContent?.data || [];
 
-		if (target == "agencies")
-			return NextResponse.json({ Agencies: ConvertSchemaAgency(ParseContent?.data) });
-		return NextResponse.json({ Contacts: ConvertSchemaContact(ParseContent?.data) });
+		// NOTE: If CSV contains header row, adjust conversion to skip it by detecting non-data row.
+
+		if (target == "agencies") {
+			const all = ConvertSchemaAgency(rows) || [];
+			const total = all.length;
+			const totalPages = Math.max(1, Math.ceil(total / pageSize));
+			const start = (page - 1) * pageSize;
+			const slice = all.slice(start, start + pageSize);
+			// Pagination slice applied before returning JSON ensures not all data loads at once.
+			return NextResponse.json({ Agencies: slice, meta: { total, page, pageSize, totalPages } });
+		}
+		const allContacts = ConvertSchemaContact(rows) || [];
+		const totalC = allContacts.length;
+		const totalPagesC = Math.max(1, Math.ceil(totalC / pageSize));
+		const startC = (page - 1) * pageSize;
+		const sliceC = allContacts.slice(startC, startC + pageSize);
+		// Pagination slice applied before returning JSON ensures not all data loads at once.
+		return NextResponse.json({ Contacts: sliceC, meta: { total: totalC, page, pageSize, totalPages: totalPagesC } });
 	}
 	catch (err) {
 		console.log("Error => ", err);

@@ -5,26 +5,39 @@ import { useUser, UserButton } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
 import Contact from '../interfaces/Contact'
 import Agency from '../interfaces/Agency'
 
 function DashboardPage() {
 	const { isSignedIn, isLoaded } = useUser()
 
-	const [Contacts, setContacts] = useState<null | Contact>(null);
-	const [Agencies, setAgencies] = useState<null | Agency>(null);
+	const [contacts, setContacts] = useState<Contact[] | null>(null);
+	const [agencies, setAgencies] = useState<Agency[] | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(() => {
-		const getdata = async () => {
+		const fetchData = async () => {
+			setIsLoading(true);
 			try {
-				const res = await axios.get("/api/data?target=agencies");
-				console.log(res.data);
+				const agenciesRes = await axios.get("/api/data?target=agencies");
+				const contactsRes = await axios.get("/api/data?target=contacts");
+
+				setAgencies(agenciesRes.data?.Agencies || null);
+				setContacts(contactsRes.data?.Contacts || null);
+				toast.success('Data loaded successfully');
 			} catch (error) {
-				console.error("Error fetching data:", error);
+				// console.error("Error fetching data:", error);
+				toast.error('Failed to fetch data. Please try again.');
+			} finally {
+				setIsLoading(false);
 			}
 		}
-		getdata();
+		fetchData();
 	}, [])
 
+	console.log(contacts);
+	console.log(agencies);
 	if (!isLoaded) {
 		return (
 			<div className="min-h-screen flex items-center justify-center bg-black">
@@ -42,6 +55,28 @@ function DashboardPage() {
 
 	return (
 		<div className="min-h-screen bg-black text-slate-100 font-inter relative overflow-hidden">
+			<Toaster
+				position="top-right"
+				toastOptions={{
+					style: {
+						background: '#1e293b',
+						color: '#f1f5f9',
+						border: '1px solid #334155',
+					},
+					success: {
+						iconTheme: {
+							primary: '#10b981',
+							secondary: '#f1f5f9',
+						},
+					},
+					error: {
+						iconTheme: {
+							primary: '#ef4444',
+							secondary: '#f1f5f9',
+						},
+					},
+				}}
+			/>
 			{/* Cinematic background effects */}
 			<div className="absolute inset-0 pointer-events-none overflow-hidden">
 				{/* Animated gradient orbs */}
