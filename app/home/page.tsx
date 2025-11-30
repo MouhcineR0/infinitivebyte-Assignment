@@ -10,6 +10,21 @@ import { useEffect } from "react"
 function index() {
 	const { isSignedIn, isLoaded } = useUser();
 
+	// Loading screen while Clerk/user state initializes
+	if (!isLoaded) {
+		return (
+			<div className="min-h-screen bg-black flex items-center justify-center">
+				<div className="flex flex-col items-center gap-4">
+					<div className="relative h-14 w-14">
+						<div className="absolute inset-0 rounded-full border-4 border-slate-800" />
+						<div className="absolute inset-0 rounded-full border-4 border-t-indigo-500 animate-spin" />
+					</div>
+					<div className="text-sm text-slate-400">Loading experience…</div>
+				</div>
+			</div>
+		)
+	}
+
 	return (
 		<>
 			<div className="relative bg-black h-screen z-99">
@@ -40,8 +55,8 @@ function index() {
 						{/* Navigation Links */}
 						<div className="hidden sm:flex items-center gap-2 text-sm">
 							<Link href={'/dashboard'} className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Home</Link>
-							<a href={'https://github.com/rachid-mouhcine'} target="_blank" className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Docs</a>
-							<a href={'#features'} className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Features</a>
+							<a href={'https://github.com/MouhcineR0/infinitivebyte-Assignment/blob/main/README.md'} target="_blank" className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Docs</a>
+							<a href={'https://github.com/MouhcineR0/infinitivebyte-Assignment/blob/main/README.md'} target="_blank" className="px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Features</a>
 						</div>
 
 						{/* Auth Buttons */}
@@ -92,12 +107,12 @@ function index() {
 									<Link href={"/dashboard"} className="py-3 px-6 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition">Get Started</Link>
 								</SignedIn>
 
-								<a href="#features" className="py-3 px-6 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">Explore Docs</a>
+								<a href="https://github.com/MouhcineR0/infinitivebyte-Assignment/blob/main/README.md" target="_blank" className="py-3 px-6 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">Explore Docs</a>
 							</div>
 
 							<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-								<div className="rounded-full border-white/10 border bg-white/5 p-3"><GithubIcon size={18} /></div>
-								<div className="rounded-full border-white/10 border bg-white/5 p-3"><LinkedinIcon size={18} /></div>
+								<a href="https://github.com/MouhcineR0" target="_blank" className="rounded-full border-white/10 border bg-white/5 p-3"><GithubIcon size={18} /></a>
+								<a href="https://www.linkedin.com/in/rachid-mouhcine/" target="_blank" className="rounded-full border-white/10 border bg-white/5 p-3"><LinkedinIcon size={18} /></a>
 							</div>
 						</div>
 					</div>
