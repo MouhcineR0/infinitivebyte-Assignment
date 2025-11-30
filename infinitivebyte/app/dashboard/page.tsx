@@ -10,34 +10,27 @@ import Contact from '../interfaces/Contact'
 import Agency from '../interfaces/Agency'
 
 function DashboardPage() {
-	const { isSignedIn, isLoaded } = useUser()
-
-	const [contacts, setContacts] = useState<Contact[] | null>(null);
-	const [agencies, setAgencies] = useState<Agency[] | null>(null);
-	const [isLoading, setIsLoading] = useState(true);
+	const { isSignedIn, isLoaded, user } = useUser()
+	const [isPremium, setIsPremium] = useState(false)
 
 	useEffect(() => {
-		const fetchData = async () => {
-			setIsLoading(true);
-			try {
-				const agenciesRes = await axios.get("/api/data?target=agencies");
-				const contactsRes = await axios.get("/api/data?target=contacts");
+		if (!user?.id) return
+		const premiumKey = `premium_${user.id}`
+		setIsPremium(localStorage.getItem(premiumKey) === 'true')
+	}, [user])
 
-				setAgencies(agenciesRes.data?.Agencies || null);
-				setContacts(contactsRes.data?.Contacts || null);
-				toast.success('Data loaded successfully');
-			} catch (error) {
-				// console.error("Error fetching data:", error);
-				toast.error('Failed to fetch data. Please try again.');
-			} finally {
-				setIsLoading(false);
-			}
-		}
-		fetchData();
-	}, [])
+	const handleCancelPremium = () => {
+		if (!user?.id) return
+		localStorage.removeItem(`premium_${user.id}`)
+		setIsPremium(false)
+	}
 
-	console.log(contacts);
-	console.log(agencies);
+	const handleUpgradePremium = () => {
+		if (!user?.id) return
+		localStorage.setItem(`premium_${user.id}`, 'true')
+		setIsPremium(true)
+	}
+
 	if (!isLoaded) {
 		return (
 			<div className="min-h-screen flex items-center justify-center bg-black">
@@ -97,8 +90,8 @@ function DashboardPage() {
 
 			<div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
 				{/* Header */}
-				<header className="w-full bg-slate-900/40 backdrop-blur-md p-2 mb-6 rounded-xl flex items-center justify-between border border-slate-800/50">
-					<div>
+				<header className="w-full bg-slate-900/40 backdrop-blur-md p-3 sm:p-4 mb-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 border border-slate-800/50">
+					<div className="flex items-center gap-3 w-full sm:w-auto">
 						<a
 							href="/home"
 							className="inline-flex items-center gap-2 text-sm text-slate-300 rounded-md px-3 py-1 hover:bg-slate-800/60 transition-colors"
@@ -107,7 +100,19 @@ function DashboardPage() {
 							<span>Back to Home</span>
 						</a>
 					</div>
-					<div>
+					<div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
+						{isPremium && (
+							<span className="inline-flex items-center gap-1 px-2 py-1 rounded-md border border-emerald-500/50 text-emerald-300 text-xs">
+								<span className="h-2 w-2 rounded-full bg-emerald-400" />
+								Premium
+							</span>
+						)}
+						{isPremium && (
+							<button onClick={handleCancelPremium} className="text-xs px-2 py-1 rounded-md border border-red-500/50 text-red-300 hover:bg-red-500/10 transition">Cancel Premium</button>
+						)}
+						{!isPremium && (
+							<button onClick={handleUpgradePremium} className="text-xs px-2 py-1 rounded-md border border-indigo-500/50 text-indigo-300 hover:bg-indigo-500/10 transition">Upgrade to Premium</button>
+						)}
 						<UserButton afterSignOutUrl="/home" />
 					</div>
 				</header>

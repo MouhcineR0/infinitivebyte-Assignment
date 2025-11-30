@@ -3,7 +3,7 @@
 import LightRays from "@/app/animation/LightRays"
 import { SignedIn, SignedOut, SignInButton, SignUpButton, useUser, UserButton } from "@clerk/nextjs"
 import axios from "axios"
-import { GithubIcon, LinkedinIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, Landmark } from "lucide-react"
 import Link from "next/link"
 import { useEffect } from "react"
 
@@ -28,12 +28,10 @@ function index() {
 					/>
 				</div>
 				<div className="w-full flex flex-col items-center z-99">
-					<nav className="text-white mt-8 w-full max-w-5xl mx-auto px-4 py-3 rounded-full bg-white/5 backdrop-blur-lg border border-white/10 flex items-center justify-between">
+					<nav className="text-white mt-8 w-full max-w-5xl mx-auto px-4 sm:px-6 py-3 rounded-full bg-white/5 backdrop-blur-lg border border-white/10 flex items-center justify-between gap-3">
 						{/* Logo and site name */}
 						<div className="flex items-center gap-3">
-							<div className="h-9 w-9 bg-linear-to-br from-indigo-600 to-emerald-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-								IB
-							</div>
+							<Landmark className="h-8 w-8 sm:h-9 sm:w-9 text-white bg-linear-to-br from-indigo-600 to-emerald-500 rounded-lg p-2" />
 							<div className="hidden sm:block font-poppins font-semibold leading-tight">
 								<div>InfinitiveByte</div>
 								<div className="text-xs text-white/60">Agency</div>
@@ -65,12 +63,12 @@ function index() {
 							</SignedIn>
 						</div>
 					</nav>
-					<div className="middle mt-24 flex items-center justify-center text-white gap-8 relative">
+					<div className="middle mt-16 sm:mt-24 px-4 sm:px-6 flex items-center justify-center text-white gap-8 relative">
 						{/* decorative blob behind hero (subtle) */}
 						<div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-56 h-56 rounded-full bg-linear-to-br from-emerald-600/12 to-indigo-600/8 blur-3xl pointer-events-none hidden lg:block" />
 
 						{/* Centered Hero */}
-						<div className="w-full max-w-3xl px-6 py-12 relative z-10 flex flex-col items-center">
+						<div className="w-full max-w-3xl px-4 sm:px-6 py-8 sm:py-12 relative z-10 flex flex-col items-center">
 							<div className="inline-flex items-center gap-3 bg-white/6 border border-white/8 rounded-full px-3 py-1 mb-4 text-sm justify-center">
 								<span className="bg-emerald-400/30 text-emerald-200 rounded-full px-2 py-1 text-xs">Made by</span>
 								<span className="text-xs text-white/80">Rachid Mouhcine</span>
@@ -85,7 +83,7 @@ function index() {
 								A human-centered dashboard to manage agencies and contacts. Clear hierarchy, responsive layouts, and delightful micro-interactions make everyday tasks faster.
 							</p>
 
-							<div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+							<div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 w-full sm:w-auto">
 								<SignedOut>
 									<SignUpButton mode="modal">
 										<button className="py-3 px-6 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition">Get Started</button>
@@ -98,7 +96,7 @@ function index() {
 								<a href="#features" className="py-3 px-6 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">Explore Docs</a>
 							</div>
 
-							<div className="mt-6 flex items-center justify-center gap-3">
+							<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
 								<div className="rounded-full border-white/10 border bg-white/5 p-3"><GithubIcon size={18} /></div>
 								<div className="rounded-full border-white/10 border bg-white/5 p-3"><LinkedinIcon size={18} /></div>
 							</div>

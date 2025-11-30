@@ -61,6 +61,8 @@ export async function GET(request: Request) {
 	try {
 		const req = new URL(request.url);
 		const target = req.searchParams.get("target") ?? "default";
+		const idParam = req.searchParams.get('id'); // optional contact id
+		const idsOnly = req.searchParams.get('idsOnly') === 'true'; // optional flag to return only ids
 		const pageParam = req.searchParams.get("page") || '1';
 		const pageSizeParam = req.searchParams.get("pageSize") || '20';
 		const page = Math.max(1, parseInt(pageParam));
@@ -99,7 +101,27 @@ export async function GET(request: Request) {
 			// Pagination slice applied before returning JSON ensures not all data loads at once.
 			return NextResponse.json({ Agencies: slice, meta: { total, page, pageSize, totalPages } });
 		}
+
+		// contacts logic
 		const allContacts = ConvertSchemaContact(rows) || [];
+
+		// If id provided, return single contact
+		if (idParam) {
+			const found = allContacts.find(c => String(c.id) === String(idParam));
+			if (!found) return NextResponse.json({ contact: null }, { status: 404 });
+			return NextResponse.json({ contact: found });
+		}
+
+		// If idsOnly requested, return only ids (paginated)
+		if (idsOnly) {
+			const total = allContacts.length;
+			const totalPages = Math.max(1, Math.ceil(total / pageSize));
+			const start = (page - 1) * pageSize;
+			const slice = allContacts.slice(start, start + pageSize).map(c => ({ id: c.id }));
+			return NextResponse.json({ ids: slice, meta: { total, page, pageSize, totalPages } });
+		}
+
+		// default: paginated contacts
 		const totalC = allContacts.length;
 		const totalPagesC = Math.max(1, Math.ceil(totalC / pageSize));
 		const startC = (page - 1) * pageSize;
