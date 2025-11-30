@@ -179,8 +179,8 @@ function ContactsPage() {
 												<div className='text-xs text-slate-500 mt-2 flex items-center gap-2 truncate' title={contact.department || 'N/A'}><User size={14} /> Dept: {contact.department || 'N/A'}</div>
 												<div className='mt-3 grid grid-cols-2 gap-3 text-xs text-slate-400'>
 													<div className='truncate' title={contact.email_type}><span className='text-slate-500'>Email Type:</span><br />{contact.email_type}</div>
-													<div className='truncate' title={contact.agency_id}><span className='text-slate-500'>Agency ID:</span><br />{contact.agency_id}</div>
-													<div className='truncate' title={contact.firm_id}><span className='text-slate-500'>Firm ID:</span><br />{contact.firm_id}</div>
+													<div className='truncate' title={contact.agency_id?.toString()}><span className='text-slate-500'>Agency ID:</span><br />{contact.agency_id}</div>
+													<div className='truncate' title={contact.firm_id?.toString()}><span className='text-slate-500'>Firm ID:</span><br />{contact.firm_id}</div>
 													<div className='line-clamp-2 wrap-break-word' title={contact.contact_form_url}><span className='text-slate-500'>Contact Form:</span><br />{contact.contact_form_url}</div>
 												</div>
 												<div className='mt-4 text-xs space-y-1 max-h-32 overflow-hidden'>

@@ -90,10 +90,13 @@ export async function GET(request: Request) {
 		const ParseContent = Papa.parse(fileContent);
 		const rows: any[] = ParseContent?.data || [];
 
-		// NOTE: If CSV contains header row, adjust conversion to skip it by detecting non-data row.
+		 // Always skip the first row if it's a header/placeholder
+		const dataRows = rows.slice(1);
+
+		// NOTE: If CSV contains header row, we now consistently remove it above.
 
 		if (target == "agencies") {
-			const all = ConvertSchemaAgency(rows) || [];
+			const all = ConvertSchemaAgency(dataRows) || [];
 			const total = all.length;
 			const totalPages = Math.max(1, Math.ceil(total / pageSize));
 			const start = (page - 1) * pageSize;
@@ -103,7 +106,7 @@ export async function GET(request: Request) {
 		}
 
 		// contacts logic
-		const allContacts = ConvertSchemaContact(rows) || [];
+		const allContacts = ConvertSchemaContact(dataRows) || [];
 
 		// If id provided, return single contact
 		if (idParam) {

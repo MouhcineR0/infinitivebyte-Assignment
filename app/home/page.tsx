@@ -3,7 +3,7 @@
 import LightRays from "@/app/animation/LightRays"
 import { SignedIn, SignedOut, SignInButton, SignUpButton, useUser, UserButton } from "@clerk/nextjs"
 import axios from "axios"
-import { GithubIcon, LinkedinIcon, Landmark } from "lucide-react"
+import { GithubIcon, LinkedinIcon } from "lucide-react"
 import Link from "next/link"
 import { useEffect } from "react"
 
@@ -31,8 +31,7 @@ function index() {
 					<nav className="text-white mt-8 w-full max-w-5xl mx-auto px-4 sm:px-6 py-3 rounded-full bg-white/5 backdrop-blur-lg border border-white/10 flex items-center justify-between gap-3">
 						{/* Logo and site name */}
 						<div className="flex items-center gap-3">
-							<Landmark className="h-8 w-8 sm:h-9 sm:w-9 text-white bg-linear-to-br from-indigo-600 to-emerald-500 rounded-lg p-2" />
-							<div className="hidden sm:block font-poppins font-semibold leading-tight">
+							<div className="font-poppins font-semibold leading-tight">
 								<div>InfinitiveByte</div>
 								<div className="text-xs text-white/60">Agency</div>
 							</div>
@@ -75,12 +74,12 @@ function index() {
 							</div>
 
 							<h1 className="font-poppins font-extrabold text-3xl sm:text-4xl md:text-5xl leading-tight text-center">
-								Design beautiful relationships —
-								<span className="text-emerald-300"> organize</span>, <span className="text-indigo-300">connect</span>, and <span className="text-white">grow.</span>
+								Build smarter dashboards —
+								<span className="text-emerald-300"> visualize</span>, <span className="text-indigo-300">analyze</span>, and <span className="text-white">act.</span>
 							</h1>
 
 							<p className="mt-4 text-slate-200 max-w-2xl mx-auto text-center">
-								A human-centered dashboard to manage agencies and contacts. Clear hierarchy, responsive layouts, and delightful micro-interactions make everyday tasks faster.
+								Create clean, responsive dashboards for agencies and contacts. Clear data views, fast navigation, and thoughtful interactions help teams make decisions quickly.
 							</p>
 
 							<div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 w-full sm:w-auto">
