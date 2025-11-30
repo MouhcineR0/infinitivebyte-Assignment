@@ -75,7 +75,7 @@ All data (agencies and contacts) comes from a single API endpoint.
 
 ---
 
-![Alt text](https://github.com/)
+![Alt text](https://raw.githubusercontent.com/MouhcineR0/infinitivebyte-Assignment/refs/heads/main/public/Dashboardworkflow0.jpg)
 
 
 ## About the AI Help
