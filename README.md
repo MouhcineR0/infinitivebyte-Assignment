@@ -75,8 +75,12 @@ All data (agencies and contacts) comes from a single API endpoint.
 
 ---
 
+![Alt text](https://github.com/)
+
+
 ## About the AI Help
 
 GitHub Copilot (AI) is the main builder of this project, responsible for generating most of the code structure and implementation. It also helped clean up several parts of the logic, including the 50-per-day contact view limit.
 
 My role is focused on tracking, reviewing, and refining the contact-handling logic to ensure everything works correctly and to prevent issues before they grow into bigger problems.
+
